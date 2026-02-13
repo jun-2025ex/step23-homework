@@ -37,6 +37,7 @@ form.addEventListener("submit", async (event) => {
       <p>高さ: ${data.height}</p>
       <p>重さ: ${data.weight}</p>
       <p>タイプ: ${data.types.map(t => t.type.name).join(", ")}</p>
+      <img src="${data.sprites.front_default}" alt="">
 
       <br/><br/>
 
@@ -44,6 +45,7 @@ form.addEventListener("submit", async (event) => {
       <p>高さ: ${data2.height}</p>
       <p>重さ: ${data2.weight}</p>
       <p>タイプ: ${data2.types.map(t => t.type.name).join(", ")}</p>
+      <img src="${data2.sprites.front_default}" alt="">
 
       <br/><br/>
       
@@ -51,6 +53,7 @@ form.addEventListener("submit", async (event) => {
       <p>高さ: ${data3.height}</p>
       <p>重さ: ${data3.weight}</p>
       <p>タイプ: ${data3.types.map(t => t.type.name).join(", ")}</p>
+      <img src="${data3.sprites.front_default}" alt="">
     `;
   } catch (error) {
     result.textContent = "エラー: " + error.message;
