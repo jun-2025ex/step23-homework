@@ -18,11 +18,39 @@ form.addEventListener("submit", async (event) => {
 
     const data = await response.json();
 
+    const response2 = await fetch(`https://pokeapi.co/api/v2/pokemon/${data.id - 1}`);
+    if (!response2.ok) {
+      throw new Error("ポケモンが見つかりません！");
+    }
+
+    const data2 = await response2.json();
+
+    const response3 = await fetch(`https://pokeapi.co/api/v2/pokemon/${data.id + 1}`);
+    if (!response3.ok) {
+      throw new Error("ポケモンが見つかりません！");
+    }
+
+    const data3 = await response3.json();
+
     result.innerHTML = `
       <h2>${data.name}</h2>
       <p>高さ: ${data.height}</p>
       <p>重さ: ${data.weight}</p>
       <p>タイプ: ${data.types.map(t => t.type.name).join(", ")}</p>
+
+      <br/><br/>
+
+      <h2>前のIDのポケモン：${data2.name}</h2>
+      <p>高さ: ${data2.height}</p>
+      <p>重さ: ${data2.weight}</p>
+      <p>タイプ: ${data2.types.map(t => t.type.name).join(", ")}</p>
+
+      <br/><br/>
+      
+      <h2>後ろのIDのポケモン：${data3.name}</h2>
+      <p>高さ: ${data3.height}</p>
+      <p>重さ: ${data3.weight}</p>
+      <p>タイプ: ${data3.types.map(t => t.type.name).join(", ")}</p>
     `;
   } catch (error) {
     result.textContent = "エラー: " + error.message;
